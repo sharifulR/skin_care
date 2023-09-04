@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/homeNavId"
+        android:title="Home"
+        android:icon="@drawable/home_24"/>
+
+    <item android:id="@+id/clientNavId"
+        android:title="Client"
+        android:icon="@drawable/client_24"/>
+
+    <item android:id="@+id/invoiceNavId"
+        android:title="Invoice"
+        android:icon="@drawable/invoice_24"/>
+
+    <item android:id="@+id/serviceNavId"
+        android:title="Service"
+        android:icon="@drawable/services_24"/>
+
+    <item android:id="@+id/profileNavId"
+        android:title="Profile"
+        android:icon="@drawable/profile_24"/>
+
+</menu>
