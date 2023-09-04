@@ -17,14 +17,12 @@ class ClientRepository @Inject constructor(private val clientInterface: ClientIn
         get()=_clientLiveData
 
     suspend fun getClients(){
-        val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYzJjMjc2Y2YzMzA0MmM0ODhmOTkxMDY4MzQyYjcwYjY3ZGJlNTNlMjljZDU1ZTY0YTRiMmY1NDk4NDg4YTk5OWRmODlhZGYxZDczZWUwZTkiLCJpYXQiOjE2OTM4MTI0NTUuMTM1MTIyMDYwNzc1NzU2ODM1OTM3NSwibmJmIjoxNjkzODEyNDU1LjEzNTEyMzk2ODEyNDM4OTY0ODQzNzUsImV4cCI6MTcyNTQzNDg1NS4xMjQxNTc5MDU1Nzg2MTMyODEyNSwic3ViIjoiMiIsInNjb3BlcyI6W119.iH7tkFXd9-jvb_NgQ81nJNVyY1sVrsM7DEZCuAEEYh_aY_g0F4LtcVKeHGW-m3S6HGljw96i3fiLAdw8VjuEw4Q0d74VhKFH60r_Qwzf-0UpBo-_dkbdtvvIHsNB5E4FY_rIjMuXGFFVyIiV4FqXIrbxKMPTe_52Pt7yg3fKDPo07ux50HaOV5wYLDSCjXcDn2cHECet7trwpyGCKWcpfbKnDs0qU8g2OfynIiOXxPXveromVRMj0M63UhzTkqzUMk7d3dSqotz5YVSrKe2OtWVGZU2h9QwjynWY0oJld92cadqlsatNF3Hni5kIia9ZdzVrfQCyoqipa_JVV2OGKFQn9wYmXWTGMn5gu-pSKaf5tQ1gFx5air6fD6tzrNi53r5kpOGnUp1evwY8l_Yrec7Fq6f7Aq0IUtGH5Q54un_DCURK0gBSwR3qzxGMZHM57ii7EN7J1-7HTI1QYtbu269Y2Mgascrvv7Q5jjIIZwWjZW13mZuJd8vM3LXdJLm_HsGiEViSnWtWESsbYo9dMjgz3ncOXLjQeBzSUVRx3kBV4OhdY98AMPg0uZaqmyICyTFXFgX-kXI64OlgTDfOuaRM-peiP2xVf4jJSdTpAC0mlhkwIW_mZB3tslmevcARf81g9X6EcdBlCV4fuNrK91hIEu-No-yzBpImG-qMxs0"
+        val token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiZTkxZjEwYzA4ZTdiN2JmOTVlOWFkZmZjZDlhMDNkMTkyYzAwNzk1N2Y5Mzc0YWFlOTJkMzhkZTAyNmZjMGJkNDViYTdlZGIyOTJjOTkwNmUiLCJpYXQiOjE2OTM4NDc3NjQuNTI0MjQ3ODg0NzUwMzY2MjEwOTM3NSwibmJmIjoxNjkzODQ3NzY0LjUyNDI0OTA3Njg0MzI2MTcxODc1LCJleHAiOjE3MjU0NzAxNjQuNTE2NDk0MDM1NzIwODI1MTk1MzEyNSwic3ViIjoiMiIsInNjb3BlcyI6W119.MyEl_JT13ce9uo1GpJ-jtaUnQJgjoSqV9A3yMwDlTD3Kng1DgjWInrMoikPpiUpSxysqQBAiGhvu6a0Gr0e5j3z70sD0bC7K8u8fZ-DdO6Q1_Rq15IKX1JYWdOeIsfn5REaX7xiv4eM75RX1JAiUOC3AfeOxnM1ugH6wt4wZJa-2XC-An4eweb6N4NOl7qOn9YiKq__VF_hp8f52WXGY9a5nqdTOcfsu1336zzZlLhiWiAJqPr68Ol9oEzKTu8qDLi1U7sugo8-hRHLvQqrlQcwd_gSW1l1mzH246rf8c_Mvrz0hborsgJZJQyopHZbOK835RBPGaVcqMKJaCA_ZJWBV75KVRB_zvN5FSRSnWKqTxXGAWDHuwGasOpr7eIyl857fN9EI0pDHkL6-ecwbuZbg-JBmm8uQdMZ0r38xjRr1eY_BJursTihMOnpTim7xNRcCrVNngqsSD-nryUJm4izfjqGs_RGrGqqOWFJ6jm3CWNpSOHQMGAOt1rdJDOF6exu76VvQaeUJtXC2oVzzxuQzK9FxhzB7BavLD10BJZNhfgnICJAzhZpq3BxlhqPla00AD5k7L98SnH9Z58VxSSHCgeZno_2A8zQf-DAX9GidAEM4pRX2uMGvNRhXUju2a_kKmSa9rqLyqvi61Oy8K457_NIYCHvssLBdOT3_Qa0"
         _clientLiveData.postValue(NetworkResult.Loading())
-        var response=clientInterface.getClient(token,1)
+        val response=clientInterface.getClient(token, 1)
 
         if (response.isSuccessful && response.body() != null) {
-            _clientLiveData.postValue(NetworkResult.Success(
-                response.body()!!)
-            )
+            _clientLiveData.postValue(NetworkResult.Success(response.body()!!))
 
             Log.d(Constraints.TAG, "login: ${response.body()}")
             Log.d("TAG", "getAllClass: ${response.body()}")

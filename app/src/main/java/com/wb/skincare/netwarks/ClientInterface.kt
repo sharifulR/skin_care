@@ -12,5 +12,6 @@ interface ClientInterface {
 
     @Headers("Content-Type: application/json")
     @GET(Constants.CLIENT_ENDPOINT)
-    suspend fun getClient(@Header("Authorization")token:String, @Query("page")page:Int):Response<ClientResponse>
+    suspend fun getClient(@Header("Authorization") token:String,
+    @Query("Page") page: Int):Response<ClientResponse>
 }
