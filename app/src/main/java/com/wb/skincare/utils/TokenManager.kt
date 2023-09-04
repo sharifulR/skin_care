@@ -22,7 +22,23 @@ class TokenManager@Inject constructor(@ApplicationContext context: Context) {
         get() = prefs.getBoolean("is_login", false)
         set(isLogin) = prefs.edit().putBoolean("is_login", isLogin!!).apply()
 
+
     var mobile: String?
         get() = prefs.getString("mobile", "")
         set(mobile) = prefs.edit().putString("mobile", mobile).apply()
+    var email: String?
+        get() = prefs.getString("email", "")
+        set(email) = prefs.edit().putString("email", email).apply()
+
+    var name: String?
+        get() = prefs.getString("name", "")
+        set(name) = prefs.edit().putString("name", name).apply()
+
+    var userName: String?
+        get() = prefs.getString("user_name", "")
+        set(userName) = prefs.edit().putString("user_name", userName).apply()
+
+    var user: Int?
+        get() = prefs.getInt("user", 0)
+        set(user) = prefs.edit().putInt("user", user!!).apply()
 }

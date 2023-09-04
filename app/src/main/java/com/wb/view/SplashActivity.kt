@@ -7,6 +7,7 @@ import android.os.Handler
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.wb.skincare.HomeFragment
 import com.wb.skincare.MainActivity
 import com.wb.skincare.R
 import com.wb.skincare.databinding.ActivitySplashBinding
@@ -25,24 +26,26 @@ class SplashActivity : AppCompatActivity() {
 
 
         tokenManager=TokenManager(this)
+        val isLogin = tokenManager.isLogin
 
-        Handler().postDelayed({
+        if (isLogin!!) {
 
-            if(tokenManager.isLogin!!){
-                val intent = Intent(this@SplashActivity, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP.or(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
+            Handler().postDelayed({
+                val main = Intent(this@SplashActivity, MainActivity::class.java)
+                startActivity(main)
                 finish()
-            }else {
+            }, DURATION)
+
+        } else {
+            Handler().postDelayed({
+                supportFragmentManager.beginTransaction().replace(R.id.container,
+                    LoginFragment()
+                ).commit()
                 binding.splashLayout.isVisible=false
-                val fragmentManager=supportFragmentManager
-                val fragmentTransaction=fragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.container,LoginFragment())
-                fragmentTransaction.commit()
-            }
+            }, DURATION)
 
-        }, DURATION)
 
+        }
         setContentView(binding.root)
     }
 

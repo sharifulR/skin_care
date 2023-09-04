@@ -29,7 +29,11 @@
         android:id="@+id/profileFragment"
         android:name="com.wb.skincare.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.wb.view.AboutFragment"
@@ -43,9 +47,12 @@
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.wb.view.ChangePasswordFragment"
-        android:label="ChangePasswordFragment" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.wb.view.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="fragment_update_profile"
+        tools:layout="@layout/fragment_update_profile" >
+        <action
+            android:id="@+id/action_changePasswordFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+
 </navigation>

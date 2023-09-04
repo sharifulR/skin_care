@@ -48,19 +48,19 @@ class ClientAdapter(): ListAdapter<ClientResponse.ClientData.Data, ClientAdapter
     }
 
     override fun onBindViewHolder(holder: ClientsViewHolder, position: Int) {
-        val allClass= getItem(position)
-        allClass?.let {
+        val allClients= getItem(position)
+        allClients?.let {
             holder.bind(it)
         }
     }
 
     class ComparatorDiffUtil : DiffUtil.ItemCallback<ClientResponse.ClientData.Data>() {
         override fun areItemsTheSame(oldItem: ClientResponse.ClientData.Data, newItem: ClientResponse.ClientData.Data): Boolean {
-            TODO("Not yet implemented")
+            return oldItem.id==newItem.id
         }
 
         override fun areContentsTheSame(oldItem: ClientResponse.ClientData.Data, newItem: ClientResponse.ClientData.Data): Boolean {
-            return oldItem.id==newItem.id
+            return oldItem==newItem
         }
 
     }

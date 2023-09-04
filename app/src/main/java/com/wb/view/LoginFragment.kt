@@ -159,10 +159,6 @@ class LoginFragment : Fragment() {
         return LoginRequest(mobile,password)
     }
 
-    /*private fun validateUserInput(): Pair<Boolean, String> {
-        val loginRequest=getLoginRequest()
-        return authViewModel.validateCredentials(loginRequest.mobile,loginRequest.password,true)
-    }*/
     private fun bindObseres() {
         authViewModel.userRepositoryLiveData.observe(viewLifecycleOwner, Observer {
 
@@ -170,8 +166,10 @@ class LoginFragment : Fragment() {
 
             when(it){
                 is NetworkResult.Success ->{
+
                     tokenManager.saveToken(it.data!!.accessToken)
-                    /*findNavController().navigate(R.id.action_loginFragment_to_myLeadFragment)*/
+                    tokenManager.isLogin = true
+
 
                     startActivity(Intent(requireActivity(),MainActivity::class.java))
                 }

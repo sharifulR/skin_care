@@ -44,34 +44,11 @@ class UpdateProfileFragment : Fragment() {
 
     private fun initView() {
 
-        userInfoViewModel.getUserInfo()
-        bindObservers()
+
 
     }
 
-    private fun bindObservers() {
-        userInfoViewModel.userInfoLiveData.observe(viewLifecycleOwner, Observer {
-            //binding.progressBar.isVisible=false
 
-            when(it){
-                is NetworkResult.Success->{
-                    Log.d("TAG", "bindObservers: ${it.data}")
-
-                    binding.firstNameIEtvId.editText!!.setText(it.data?.userData?.name)
-                    binding.phoneInputEditTextId.editText!!.setText(it.data?.userData?.mobile)
-                    binding.emailIEtvId.editText!!.setText(it.data?.userData?.mobile)
-                }
-                is NetworkResult.Error -> {
-                    Toast.makeText(requireContext(),it.message.toString(), Toast.LENGTH_SHORT).show()
-                }
-                is NetworkResult.Loading -> {
-                    //binding.progressBar.isVisible=true
-                }
-
-                else -> {}
-            }
-        })
-    }
 
     override fun onDestroy() {
         super.onDestroy()
