@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wb.skincare.databinding.FragmentUpdateProfileBinding
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.netwarks.UserInfoInterface
+import com.wb.skincare.utils.TokenManager
 import com.wb.skincare.viewModels.UserInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -27,6 +28,7 @@ class UpdateProfileFragment : Fragment() {
 
     @Inject
     lateinit var userInfoInterface: UserInfoInterface
+    private lateinit var tokenManager: TokenManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,13 +41,29 @@ class UpdateProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
+        setInitialData()
     }
 
-    private fun initView() {
+    private fun setInitialData() {
+        tokenManager= TokenManager(requireContext())
 
 
+        //bindObservers()
 
+        val name = tokenManager.userName
+        val mobile = tokenManager.userMobile
+        val email=tokenManager.userEmail
+
+        if(name!=null){
+            binding.firstNameIEtvId.editText!!.setText(name)
+        }
+        if(mobile!=null){
+            binding.phoneInputEditTextId.editText!!.setText(mobile)
+        }
+        if(email!=null){
+            binding.emailIEtvId.editText!!.setText(email)
+        }
+        //clickListener()
     }
 
 

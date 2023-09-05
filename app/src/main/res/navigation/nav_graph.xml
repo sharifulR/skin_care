@@ -53,6 +53,11 @@
             android:id="@+id/action_changePasswordFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/updateClientFragment"
+        android:name="com.wb.view.UpdateClientFragment"
+        android:label="UpdateClientFragment"
+        tools:layout="@layout/fragment_about" />
 
 
 </navigation>

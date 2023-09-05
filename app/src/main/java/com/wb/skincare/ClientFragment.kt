@@ -12,9 +12,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wb.skincare.adapter.ClientAdapter
 import com.wb.skincare.databinding.FragmentClientBinding
+import com.wb.skincare.models.ClientResponse
 import com.wb.skincare.netwarks.ClientInterface
 import com.wb.skincare.netwarks.NetworkResult
+import com.wb.skincare.utils.TokenManager
 import com.wb.skincare.viewModels.ClientViewModel
+import com.wb.view.UpdateClientFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,6 +28,8 @@ class ClientFragment : Fragment() {
     private val binding get()=_binding!!
 
     private val clientViewModel by viewModels<ClientViewModel>()
+
+    lateinit var tokenManager: TokenManager
 
     @Inject
     lateinit var clientInterface: ClientInterface
@@ -37,7 +42,9 @@ class ClientFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentClientBinding.inflate(inflater,container, false)
-        clientAdapter= ClientAdapter()
+        clientAdapter= ClientAdapter(::onClientItemClicked)
+
+        tokenManager = TokenManager(requireActivity())
 
         return binding.root
     }
@@ -69,6 +76,24 @@ class ClientFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun onClientItemClicked(clientResponse: ClientResponse.ClientData.Data){
+        /*val bundle=Bundle()
+        bundle.putString("client",Gson().toJson(clientResponse))*/
+
+        val clientId=clientResponse.id
+        val clientName = clientResponse.clientName
+        val clientMobile = clientResponse.clientMobile
+        tokenManager.clientId=clientId
+        tokenManager.userName = clientName
+        tokenManager.mobile = clientMobile
+        replaceFragment(UpdateClientFragment())
+    }
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransaction=fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.fragmentContainerView,fragment)
+        fragmentTransaction?.commit()
     }
 
     override fun onDestroy() {

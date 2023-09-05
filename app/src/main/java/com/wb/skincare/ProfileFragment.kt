@@ -93,8 +93,8 @@ class ProfileFragment : Fragment() {
                     val mobile = it.data?.userData?.mobile
                     val email = it.data?.userData?.email
                     tokenManager.userName = name
-                    tokenManager.mobile = mobile
-                    tokenManager.email = email
+                    tokenManager.userMobile = mobile
+                    tokenManager.userEmail = email
                     binding.txvProfileName.text = name!!.replace("\"", "")
 
                     /*binding.firstNameIEtvId.editText!!.setText(it.data?.userData?.name)

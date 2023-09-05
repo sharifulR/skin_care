@@ -8,17 +8,34 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wb.skincare.databinding.ConcactListItemBinding
 import com.wb.skincare.models.ClientResponse
+import kotlin.reflect.KFunction1
 
-class ClientAdapter(): ListAdapter<ClientResponse.ClientData.Data, ClientAdapter.ClientsViewHolder>(ComparatorDiffUtil()) {
+class ClientAdapter(private val onClientItemClicked: KFunction1<ClientResponse.ClientData.Data, Unit>) : ListAdapter<ClientResponse.ClientData.Data, ClientAdapter.ClientsViewHolder>(ComparatorDiffUtil()) {
 
-    class ClientsViewHolder(private val binding: ConcactListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientsViewHolder {
+        val binding= ConcactListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return ClientsViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ClientsViewHolder, position: Int) {
+        val allClients= getItem(position)
+        allClients?.let {
+            holder.bind(it)
+        }
+    }
+    inner class ClientsViewHolder(private val binding: ConcactListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(client: ClientResponse.ClientData.Data){
             binding.customerNameTVID.text=client.clientName
             Log.d("TAG", "bind: ${client.clientName}")
             //binding.tvShopName.text=allLead.organization
             //binding.serialNoId.text = (position+1).toString()
             binding.customerIdTVID.text= client.clientMobile
+
+            binding.root.setOnClickListener {
+                onClientItemClicked(client)
+            }
 
             /* val date = CommonMethods.dateFormatter(allLead.createdAt!!)
              binding.dateId.text = date
@@ -39,19 +56,6 @@ class ClientAdapter(): ListAdapter<ClientResponse.ClientData.Data, ClientAdapter
                  .into(binding.image)*/
         }
 
-    }
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientsViewHolder {
-        val binding= ConcactListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ClientsViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: ClientsViewHolder, position: Int) {
-        val allClients= getItem(position)
-        allClients?.let {
-            holder.bind(it)
-        }
     }
 
     class ComparatorDiffUtil : DiffUtil.ItemCallback<ClientResponse.ClientData.Data>() {

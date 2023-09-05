@@ -20,6 +20,9 @@
         android:theme="@style/Theme.SkinCare"
         tools:targetApi="31">
         <activity
+            android:name="com.wb.view.UpdateClientActivity"
+            android:exported="false" />
+        <activity
             android:name="com.wb.view.RegisterActivity"
             android:exported="false" />
         <activity

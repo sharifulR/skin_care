@@ -18,15 +18,22 @@ class TokenManager@Inject constructor(@ApplicationContext context: Context) {
         return prefs.getString(Constants.USER_TOKEN,null)
     }
 
+    var authToken: String?
+        get() = prefs.getString("access_token", "")
+        set(accessToken) = prefs.edit().putString("access_token", accessToken).apply()
+
     var isLogin: Boolean?
         get() = prefs.getBoolean("is_login", false)
         set(isLogin) = prefs.edit().putBoolean("is_login", isLogin!!).apply()
 
 
+    var clientId: Int?
+        get() = prefs.getInt("id", 0)
+        set(id) = prefs.edit().putInt("id", id!!).apply()
     var mobile: String?
         get() = prefs.getString("mobile", "")
         set(mobile) = prefs.edit().putString("mobile", mobile).apply()
-    var email: String?
+    var userEmail: String?
         get() = prefs.getString("email", "")
         set(email) = prefs.edit().putString("email", email).apply()
 
@@ -37,6 +44,9 @@ class TokenManager@Inject constructor(@ApplicationContext context: Context) {
     var userName: String?
         get() = prefs.getString("user_name", "")
         set(userName) = prefs.edit().putString("user_name", userName).apply()
+    var userMobile: String?
+        get() = prefs.getString("mobile", "")
+        set(mobile) = prefs.edit().putString("mobile", mobile).apply()
 
     var user: Int?
         get() = prefs.getInt("user", 0)

@@ -13,4 +13,6 @@ interface UserInfoInterface {
     @Headers("Content-Type: application/json")
     @GET(Constants.USER_INFO_ENDPOINT)
     suspend fun getUserInfo(@Header("Authorization") token: String):Response<UserInfo>
+
+
 }
