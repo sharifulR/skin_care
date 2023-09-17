@@ -36,10 +36,10 @@
                 android:layout_marginEnd="10dp"
                 android:text="Md. Shariful Islam"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/appCompatImageView2"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatImageView2"
+                app:layout_constraintBottom_toTopOf="@+id/clientPhoneIconId"
+                app:layout_constraintEnd_toStartOf="@+id/clientPhoneIconId"
                 app:layout_constraintStart_toEndOf="@+id/circleImageView"
-                app:layout_constraintTop_toTopOf="@+id/appCompatImageView2" />
+                app:layout_constraintTop_toTopOf="@+id/clientPhoneIconId" />
 
             <TextView
                 android:id="@+id/customerIdTVID"
@@ -50,12 +50,12 @@
                 android:text="123-456-789"
                 android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatImageView2"
+                app:layout_constraintEnd_toStartOf="@+id/clientPhoneIconId"
                 app:layout_constraintStart_toEndOf="@+id/circleImageView"
-                app:layout_constraintTop_toTopOf="@+id/appCompatImageView2" />
+                app:layout_constraintTop_toTopOf="@+id/clientPhoneIconId" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView2"
+                android:id="@+id/clientPhoneIconId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"

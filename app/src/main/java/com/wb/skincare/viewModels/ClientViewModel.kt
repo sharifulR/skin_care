@@ -12,6 +12,7 @@ import javax.inject.Inject
 class ClientViewModel @Inject constructor(private val clientRepository: ClientRepository):ViewModel(){
 
     val clientLiveData get()=clientRepository.clientLiveData
+    val createLiveData get() = clientRepository.createLiveData
     val statusLiveData get() = clientRepository.statusLiveData
 
     fun getClients(){

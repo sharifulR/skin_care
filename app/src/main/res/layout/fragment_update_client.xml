@@ -14,8 +14,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/baseColor"
-            app:title="Edit Profile"
+            android:background="#B10CF6"
+            app:title="Edit Client"
             app:titleTextColor="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             />
@@ -149,15 +149,21 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/clientUpdateBtnId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Update"
+                        android:layout_marginTop="10dp" />
 
-                    <Button
+                    <!--<Button
                         android:id="@+id/clientUpdateBtnId"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:backgroundTint="@color/baseColor"
+                        android:backgroundTint="#7D2D9F"
                         android:text="Update"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -168,7 +174,7 @@
                         app:cornerRadius="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/TC_FirstTextViewId" />
+                        app:layout_constraintTop_toBottomOf="@+id/TC_FirstTextViewId" />-->
 
 
 

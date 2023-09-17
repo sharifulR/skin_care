@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/profileFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -14,17 +14,32 @@
         android:id="@+id/clientFragment"
         android:name="com.wb.skincare.ClientFragment"
         android:label="fragment_client"
-        tools:layout="@layout/fragment_client" />
+        tools:layout="@layout/fragment_client" >
+        <action
+            android:id="@+id/action_clientFragment_to_updateClientFragment"
+            app:destination="@id/updateClientFragment" />
+        <action
+            android:id="@+id/action_clientFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/invoiceFragment"
         android:name="com.wb.skincare.InvoiceFragment"
         android:label="fragment_invoice"
-        tools:layout="@layout/fragment_invoice" />
+        tools:layout="@layout/fragment_invoice" >
+        <action
+            android:id="@+id/action_invoiceFragment_to_clientFragment"
+            app:destination="@id/clientFragment" />
+    </fragment>
     <fragment
         android:id="@+id/serviceFragment"
         android:name="com.wb.skincare.ServiceFragment"
         android:label="fragment_service"
-        tools:layout="@layout/fragment_service" />
+        tools:layout="@layout/fragment_service" >
+        <action
+            android:id="@+id/action_serviceFragment_to_invoiceFragment"
+            app:destination="@id/invoiceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.wb.skincare.ProfileFragment"
@@ -33,17 +48,33 @@
         <action
             android:id="@+id/action_profileFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_updateProfileFragment"
+            app:destination="@id/updateProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.wb.view.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_aboutFragment_to_serviceFragment"
+            app:destination="@id/serviceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/updateProfileFragment"
         android:name="com.wb.view.UpdateProfileFragment"
         android:label="fragment_update_profile"
-        tools:layout="@layout/fragment_update_profile" />
+        tools:layout="@layout/fragment_update_profile" >
+        <action
+            android:id="@+id/action_updateProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.wb.view.ChangePasswordFragment"
@@ -57,7 +88,11 @@
         android:id="@+id/updateClientFragment"
         android:name="com.wb.view.UpdateClientFragment"
         android:label="UpdateClientFragment"
-        tools:layout="@layout/fragment_about" />
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_updateClientFragment_to_clientFragment"
+            app:destination="@id/clientFragment" />
+    </fragment>
 
 
 </navigation>

@@ -166,10 +166,8 @@ class LoginFragment : Fragment() {
 
             when(it){
                 is NetworkResult.Success ->{
-
                     tokenManager.saveToken(it.data!!.accessToken)
                     tokenManager.isLogin = true
-
 
                     startActivity(Intent(requireActivity(),MainActivity::class.java))
                 }

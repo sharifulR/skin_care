@@ -17,4 +17,10 @@ class UserInfoViewModel @Inject constructor(private val userInfoRepository: User
             userInfoRepository.getUserInfo()
         }
     }
+
+    fun updateUserInfo(name: String, mobile: String, email:String) {
+        viewModelScope.launch {
+            userInfoRepository.updateUserInfo(name,mobile,email)
+        }
+    }
 }

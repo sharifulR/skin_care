@@ -1,5 +1,6 @@
 package com.wb.skincare.netwarks
 
+import com.wb.skincare.models.AddClientResponse
 import com.wb.skincare.models.ClientRequest
 import com.wb.skincare.models.ClientResponse
 import com.wb.skincare.models.updateClientResponse
@@ -22,8 +23,8 @@ interface ClientInterface {
     suspend fun getClient(@Header("Authorization") token:String, @Query("Page") page: Int):Response<ClientResponse>
 
     @POST(Constants.CLIENT_ENDPOINT)
-    suspend fun createClient(@Body clientRequest: ClientRequest):Response<ClientResponse>
-    @FormUrlEncoded
-    @PUT(Constants.CLIENT_UPDATE_ENDPOINT)
-    suspend fun updateClient(@Path("clientId") clientId: Int?, clientRequest: ClientRequest):Response<updateClientResponse>
+    suspend fun createClient(@Header("Authorization") token:String,@Body clientRequest: ClientRequest):Response<AddClientResponse>
+
+    @PUT(Constants.CLIENT_UPDATE_ENDPOINT+ "/{clientId}")
+    suspend fun updateClient(@Path("clientId") clientId: Int?,@Body  clientRequest: ClientRequest):Response<updateClientResponse>
 }

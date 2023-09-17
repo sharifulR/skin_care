@@ -1,5 +1,6 @@
 package com.wb.skincare
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,8 +16,10 @@ import com.wb.skincare.databinding.FragmentClientBinding
 import com.wb.skincare.models.ClientResponse
 import com.wb.skincare.netwarks.ClientInterface
 import com.wb.skincare.netwarks.NetworkResult
+import com.wb.skincare.utils.ProgressDialog
 import com.wb.skincare.utils.TokenManager
 import com.wb.skincare.viewModels.ClientViewModel
+import com.wb.view.AddClientFragment
 import com.wb.view.UpdateClientFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -30,6 +33,7 @@ class ClientFragment : Fragment() {
     private val clientViewModel by viewModels<ClientViewModel>()
 
     lateinit var tokenManager: TokenManager
+    private lateinit var progressDialog: ProgressDialog
 
     @Inject
     lateinit var clientInterface: ClientInterface
@@ -45,6 +49,7 @@ class ClientFragment : Fragment() {
         clientAdapter= ClientAdapter(::onClientItemClicked)
 
         tokenManager = TokenManager(requireActivity())
+        progressDialog = ProgressDialog(requireContext())
 
         return binding.root
     }
@@ -56,14 +61,20 @@ class ClientFragment : Fragment() {
         binding.clientRecyclerViewId.layoutManager=
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
         binding.clientRecyclerViewId.adapter=clientAdapter
+
+        binding.addClientFloatingActionButton.setOnClickListener {
+            replaceFragment(AddClientFragment())
+
+        }
     }
 
     private fun bindObservers() {
         clientViewModel.clientLiveData.observe(viewLifecycleOwner, Observer {
-            //binding.progressBar.isVisible=false
+            progressDialog.show()
 
             when(it){
                 is NetworkResult.Success->{
+                    progressDialog.dismiss()
                     Log.d("TAG", "bindObservers: ${it.data}")
                     val r = it.data
                     clientAdapter.submitList(it.data?.clientData?.data)
@@ -72,7 +83,7 @@ class ClientFragment : Fragment() {
                     Toast.makeText(requireContext(),it.message.toString(), Toast.LENGTH_SHORT).show()
                 }
                 is NetworkResult.Loading -> {
-                    //binding.progressBar.isVisible=true
+                   progressDialog.show()
                 }
             }
         })
