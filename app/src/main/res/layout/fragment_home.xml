@@ -78,9 +78,11 @@
                 android:weightSum="3">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/contactCardId"
+                    android:id="@+id/BranchCardId"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="vertical">
@@ -112,15 +114,18 @@
                     android:background="#EAE6DD" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/messageCardId"
+                    android:id="@+id/ProviderCardId"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageMessage"
+                        android:id="@+id/imageProvider"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
@@ -146,15 +151,18 @@
                     android:background="#EAE6DD" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/alertCardId"
+                    android:id="@+id/PaymentCardId"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageAert"
+                        android:id="@+id/imagePayment"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
@@ -212,6 +220,9 @@
                     android:id="@+id/aboutCard"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -246,6 +257,9 @@
                     android:id="@+id/documentCardId"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">

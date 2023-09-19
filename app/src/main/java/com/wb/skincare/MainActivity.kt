@@ -1,10 +1,7 @@
 package com.wb.skincare
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowInsets
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.wb.skincare.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.homeNavId->replaceFragment(HomeFragment())
                 R.id.clientNavId->replaceFragment(ClientFragment())
-                R.id.serviceNavId->replaceFragment(ServiceFragment())
+                R.id.serviceNavId->replaceFragment(ServiceCategoryFragment())
                 R.id.invoiceNavId->replaceFragment(InvoiceFragment())
                 R.id.profileNavId->replaceFragment(ProfileFragment())
                 else->{

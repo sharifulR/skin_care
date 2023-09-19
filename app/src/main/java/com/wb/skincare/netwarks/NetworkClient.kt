@@ -2,6 +2,7 @@ package com.wb.wbsoftware.networks
 
 import com.google.gson.GsonBuilder
 import com.wb.skincare.netwarks.ClientInterface
+import com.wb.skincare.netwarks.ProviderInterface
 import com.wb.skincare.netwarks.ServiceInterface
 import com.wb.skincare.netwarks.UserInfoInterface
 import com.wb.skincare.utils.Constants
@@ -40,6 +41,11 @@ class NetworkClient {
         return retrofitBuilder.build().create(ApiInterface::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun providesProviderApi(retrofitBuilder: Retrofit.Builder,okHttpClient: OkHttpClient) : ProviderInterface {
+        return retrofitBuilder.client(okHttpClient).build().create(ProviderInterface::class.java)
+    }
     @Singleton
     @Provides
     fun providesClientApi(retrofitBuilder: Retrofit.Builder,okHttpClient: OkHttpClient) : ClientInterface{

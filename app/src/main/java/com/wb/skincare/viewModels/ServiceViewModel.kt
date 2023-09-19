@@ -8,8 +8,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
 class ServiceViewModel @Inject constructor(private val serviceRepository:ServiceRepository): ViewModel() {
+    val serviceCategoryLiveData get()=serviceRepository.serviceCategoryLiveData
+    val categoryWiseServiceLiveData get()=serviceRepository.categoryWiseServiceLiveData
     val serviceLiveData get()=serviceRepository.serviceLiveData
-
+    fun getServicesCategory(){
+        viewModelScope.launch {
+            serviceRepository.getServicesCategory()
+        }
+    }
+    fun getCategoryWiseService() {
+        viewModelScope.launch {
+            serviceRepository.getCategoryWiseService()
+        }
+    }
     fun getServices(){
         viewModelScope.launch {
             serviceRepository.getServices()

@@ -5,11 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.wb.skincare.HomeFragment
 import com.wb.skincare.R
+import com.wb.skincare.databinding.FragmentAboutBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AboutFragment : Fragment() {
+
+    private var _binding:FragmentAboutBinding?=null
+    private val binding get() = _binding!!
 
 
     override fun onCreateView(
@@ -17,7 +22,24 @@ class AboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        _binding= FragmentAboutBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //replaceFragment(HomeFragment())
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransaction=fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.fragmentContainerView,fragment)
+        fragmentTransaction?.addToBackStack(null)?.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding=null
     }
 
 }

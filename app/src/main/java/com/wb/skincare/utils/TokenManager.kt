@@ -30,12 +30,22 @@ class TokenManager@Inject constructor(@ApplicationContext context: Context) {
     var clientId: Int?
         get() = prefs.getInt("id", 0)
         set(id) = prefs.edit().putInt("id", id!!).apply()
+
+    var serviceCategoryId: Int?
+        get() = prefs.getInt("id", 0)
+        set(serviceCategoryId) = prefs.edit().putInt("id", serviceCategoryId!!).apply()
+
     var mobile: String?
         get() = prefs.getString("mobile", "")
         set(mobile) = prefs.edit().putString("mobile", mobile).apply()
+
     var userEmail: String?
         get() = prefs.getString("email", "")
         set(email) = prefs.edit().putString("email", email).apply()
+
+    var userAddress: String?
+        get() = prefs.getString("address", "")
+        set(address) = prefs.edit().putString("address", address).apply()
 
     var name: String?
         get() = prefs.getString("name", "")

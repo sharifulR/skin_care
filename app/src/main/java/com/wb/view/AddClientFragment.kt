@@ -1,7 +1,10 @@
 package com.wb.view
 
-import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +20,6 @@ import com.wb.skincare.databinding.FragmentAddClientBinding
 import com.wb.skincare.models.ClientRequest
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.utils.ProgressDialog
-import com.wb.skincare.utils.TokenManager
 import com.wb.skincare.viewModels.ClientViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -54,6 +56,27 @@ class AddClientFragment : Fragment() {
         bindObservers()
         clickListener()
         progressDialog = ProgressDialog(requireContext())
+
+        binding.emailId.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.isNotEmpty()) {
+                    if (!isValidEmail(s.toString())) {
+                        binding.emailLayout.error= "Email not valid"
+                    }else{
+                        binding.emailLayout.error = null
+                        binding.emailLayout.isErrorEnabled = false
+                    }
+
+                }
+                if (s.isEmpty()) {
+                    binding.emailLayout.error = null
+                    binding.emailLayout.isErrorEnabled = false
+                }
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
     }
 
     private fun clickListener() {
@@ -141,10 +164,18 @@ class AddClientFragment : Fragment() {
         }
         return isValid
     }
+    private fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
 
     private fun replaceFragment(fragment: Fragment){
         val fragmentTransaction=fragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.fragmentContainerView,fragment)
-        fragmentTransaction?.commit()
+        fragmentTransaction?.addToBackStack(null)?.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding=null
     }
 }

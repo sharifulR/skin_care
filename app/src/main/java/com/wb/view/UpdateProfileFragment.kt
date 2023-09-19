@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.wb.skincare.ProfileFragment
+import com.wb.skincare.R
 import com.wb.skincare.databinding.FragmentUpdateProfileBinding
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.netwarks.UserInfoInterface
@@ -79,7 +80,7 @@ class UpdateProfileFragment : Fragment() {
                    // tokenManager.isLogin = true
 
 
-                    startActivity(Intent(requireActivity(), ProfileFragment::class.java))
+                    replaceFragment(ProfileFragment())
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
@@ -202,7 +203,11 @@ class UpdateProfileFragment : Fragment() {
         var mobile: String? = null
 
     }
-
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransaction=fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.fragmentContainerView,fragment)
+        fragmentTransaction?.addToBackStack(null)?.commit()
+    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -27,4 +27,5 @@ interface ClientInterface {
 
     @PUT(Constants.CLIENT_UPDATE_ENDPOINT+ "/{clientId}")
     suspend fun updateClient(@Path("clientId") clientId: Int?,@Body  clientRequest: ClientRequest):Response<updateClientResponse>
+
 }

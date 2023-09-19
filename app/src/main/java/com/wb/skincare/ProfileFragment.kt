@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.wb.skincare.databinding.FragmentClientBinding
 import com.wb.skincare.databinding.FragmentProfileBinding
 import com.wb.skincare.databinding.FragmentUpdateProfileBinding
 import com.wb.skincare.netwarks.NetworkResult
@@ -34,7 +35,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentProfileBinding
+    private var _binding: FragmentProfileBinding?=null
+    private val binding get()=_binding!!
     var progressDialog: ProgressDialog? = null
     lateinit var tokenManager: TokenManager
     lateinit var commonMethods: CommonMethods
@@ -49,7 +51,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProfileBinding.inflate(layoutInflater)
+        _binding = FragmentProfileBinding.inflate(layoutInflater)
         initView()
         return binding.root
     }
@@ -116,6 +118,11 @@ class ProfileFragment : Fragment() {
     private fun replaceFragment(fragment: Fragment){
         val fragmentTransaction=fragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.fragmentContainerView,fragment)
-        fragmentTransaction?.commit()
+        fragmentTransaction?.addToBackStack(null)?.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding=null
     }
 }

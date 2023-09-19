@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#B10CF6"
+            android:background="#CE452C81"
             app:title="Edit Client"
             app:titleTextColor="@color/white"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,9 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            >
-            <LinearLayout
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            <!--<LinearLayout
                 android:id="@+id/profileLayoutId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,25 +70,27 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cdvPersonalInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/profileLayoutId"
-                android:elevation="3dp"
-                app:cardBackgroundColor="@color/white"
+                android:layout_margin="10dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:elevation="3dp"
                 android:visibility="visible"
-                >
+                app:cardBackgroundColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/firstNameIEtvId"
@@ -96,11 +100,11 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="16dp"
+                        android:clipChildren="false"
                         android:hint="Name"
+                        app:boxBackgroundColor="@color/white"
                         app:boxStrokeWidth="1dp"
                         app:endIconMode="clear_text"
-                        android:clipChildren="false"
-                        app:boxBackgroundColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -118,6 +122,7 @@
                             android:textSize="14sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/phoneInputEditTextId"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -126,11 +131,11 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
+                        android:clipChildren="false"
                         android:hint="Mobile"
+                        app:boxBackgroundColor="@color/white"
                         app:boxStrokeWidth="1dp"
                         app:endIconMode="clear_text"
-                        android:clipChildren="false"
-                        app:boxBackgroundColor="@color/white"
                         app:startIconDrawable="@drawable/smartphone_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -141,7 +146,66 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:inputType="phone"
-                            android:maxLength="13"
+                            android:maxLength="11"
+                            android:maxLines="1"
+                            android:paddingStart="30dp"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emailInputEditTextId"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:clipChildren="false"
+                        android:hint="email"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeWidth="1dp"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/smartphone_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+
+                            android:id="@+id/emailEditTextId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:paddingStart="30dp"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/addressInputEditTextId"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:clipChildren="false"
+                        android:hint="address"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeWidth="1dp"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/smartphone_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+
+                            android:id="@+id/addressEditTextId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:inputType="text"
+                            android:maxLength="15"
                             android:maxLines="1"
                             android:paddingStart="30dp"
                             android:textSize="14sp" />
@@ -153,8 +217,8 @@
                         android:id="@+id/clientUpdateBtnId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Update"
-                        android:layout_marginTop="10dp" />
+                        android:layout_margin="16dp"
+                        android:text="Update" />
 
                     <!--<Button
                         android:id="@+id/clientUpdateBtnId"
@@ -175,7 +239,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/TC_FirstTextViewId" />-->
-
 
 
                 </LinearLayout>
