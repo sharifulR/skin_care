@@ -11,20 +11,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wb.skincare.R
-import com.wb.skincare.adapter.ClientAdapter
 import com.wb.skincare.adapter.ProviderAdapter
 import com.wb.skincare.databinding.FragmentProviderBinding
-import com.wb.skincare.models.ClientResponse
-import com.wb.skincare.models.ProviderResponse
-import com.wb.skincare.netwarks.ClientInterface
+import com.wb.skincare.models.provider.ProviderResponse
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.netwarks.ProviderInterface
 import com.wb.skincare.utils.ProgressDialog
 import com.wb.skincare.utils.TokenManager
-import com.wb.skincare.viewModels.ClientViewModel
 import com.wb.skincare.viewModels.ProviderViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.security.Provider
 import javax.inject.Inject
 
 @AndroidEntryPoint

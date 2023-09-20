@@ -3,49 +3,43 @@ package com.wb.skincare.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.wb.skincare.R
-import com.wb.skincare.databinding.ContactListItemBinding
-import com.wb.skincare.models.client.ClientResponse
+import com.wb.skincare.databinding.BranchListItemBinding
+import com.wb.skincare.models.branch.BranchResponse
 import kotlin.reflect.KFunction1
 
-class ClientAdapter(private val onClientItemClicked: KFunction1<ClientResponse.ClientData.Data, Unit>) : ListAdapter<ClientResponse.ClientData.Data, ClientAdapter.ClientsViewHolder>(ComparatorDiffUtil()) {
+class BranchAdapter (private val onProviderItemClicked: KFunction1<BranchResponse.BranchData.Data, Unit>) : ListAdapter<BranchResponse.BranchData.Data, BranchAdapter.ProvidersViewHolder>(ComparatorDiffUtil()) {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientsViewHolder {
-        val binding= ContactListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ClientsViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProvidersViewHolder {
+        val binding= BranchListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return ProvidersViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ClientsViewHolder, position: Int) {
-        val allClients= getItem(position)
-        allClients?.let {
+    override fun onBindViewHolder(holder: ProvidersViewHolder, position: Int) {
+        val allProviders= getItem(position)
+        allProviders?.let {
             holder.bind(it)
         }
     }
-    inner class ClientsViewHolder(private val binding: ContactListItemBinding) :
+    inner class ProvidersViewHolder(private val binding: BranchListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(client: ClientResponse.ClientData.Data){
-            binding.customerNameTVID.text=client.clientName
-            Log.d("TAG", "bind: ${client.clientName}")
-            //binding.tvShopName.text=allLead.organization
-            //binding.serialNoId.text = (position+1).toString()
-            binding.customerIdTVID.text= client.clientMobile
+        fun bind(branch: BranchResponse.BranchData.Data){
+            binding.branchNameTVID.text=branch.branchTitle
+            binding.branchAddressTVID.text=branch.branchAddress
+            Log.d("TAG", "bind: ${branch.branchTitle}")
 
-            /*binding.clientPhoneIconId.setOnClickListener {
-                onClientItemClicked(client)
-            }*/
-            binding.btExpand.setOnClickListener {
+
+            /*binding.btExpand.setOnClickListener {
                 val popup = PopupMenu(it.getContext(), binding.btExpand)
                 popup.menuInflater.inflate(R.menu.leads_menu, popup.menu)
                 popup.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.editId -> {
-                            onClientItemClicked(client)
-                            /*val item = list[position]
+                            onProviderItemClicked(providers)
+                            *//*val item = list[position]
                             val id: Int = item.id!!
                             val projectId: Int = item.projectId!!
                             val user: Int = item.userId!!
@@ -83,13 +77,13 @@ class ClientAdapter(private val onClientItemClicked: KFunction1<ClientResponse.C
                                     .putExtra("shopAddress1", shopAddress1)
                                     .putExtra("shopAddress2", shopAddress2.toString())
                                     .putExtra("projectId", projectId)
-                            )*/
+                            )*//*
                         }
 
                         R.id.viewId -> {
 
                             //onClientItemClicked(client)
-                            /*var installCharge = ""
+                            *//*var installCharge = ""
                             var monthlyCharge = ""
                             var interest = ""
 
@@ -136,7 +130,7 @@ class ClientAdapter(private val onClientItemClicked: KFunction1<ClientResponse.C
                                 districtName,
                                 distId,
                                 projectId
-                            )*/
+                            )*//*
 
                         }
 
@@ -145,42 +139,18 @@ class ClientAdapter(private val onClientItemClicked: KFunction1<ClientResponse.C
                 }
                 //displaying the popup
                 popup.show()
-            }
-
-
-           /* binding.clientPhoneIconId.setOnClickListener {
-                val dialIntent = Intent(Intent.ACTION_DIAL)
-                dialIntent.data = Uri.parse("tel:" + client.clientMobile)
-                context.startActivity(dialIntent)
             }*/
 
-            /* val date = CommonMethods.dateFormatter(allLead.createdAt!!)
-             binding.dateId.text = date
-             val image = allLead.image
- //            if (image == null) {
- //                binding.image.background =
- //                    context.resources.getDrawable(R.drawable.ic_shop_image)
- //            }else{
-
-             Glide.with(context)
-                 .load(Constants.BASE_URL + "uploads/organization_image/$image")
-                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-
-                 .apply(
-                     RequestOptions()
-                         .error(R.drawable.ic_shop_image)
-                 )
-                 .into(binding.image)*/
         }
 
     }
 
-    class ComparatorDiffUtil : DiffUtil.ItemCallback<ClientResponse.ClientData.Data>() {
-        override fun areItemsTheSame(oldItem: ClientResponse.ClientData.Data, newItem: ClientResponse.ClientData.Data): Boolean {
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<BranchResponse.BranchData.Data>() {
+        override fun areItemsTheSame(oldItem: BranchResponse.BranchData.Data, newItem: BranchResponse.BranchData.Data): Boolean {
             return oldItem.id==newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: ClientResponse.ClientData.Data, newItem: ClientResponse.ClientData.Data): Boolean {
+        override fun areContentsTheSame(oldItem: BranchResponse.BranchData.Data, newItem: BranchResponse.BranchData.Data): Boolean {
             return oldItem==newItem
         }
 

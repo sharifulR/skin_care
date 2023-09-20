@@ -1,6 +1,10 @@
 package com.wb.skincare.netwarks
 
 import com.wb.skincare.models.*
+import com.wb.skincare.models.provider.AddProvider
+import com.wb.skincare.models.provider.ProviderRequest
+import com.wb.skincare.models.provider.ProviderResponse
+import com.wb.skincare.models.provider.UpdateProviderResponse
 import com.wb.skincare.utils.Constants
 import retrofit2.Response
 import retrofit2.http.*

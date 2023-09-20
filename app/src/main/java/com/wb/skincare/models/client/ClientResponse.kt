@@ -1,38 +1,19 @@
-package com.wb.skincare.models
+package com.wb.skincare.models.client
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ServiceResponse(
-    @SerializedName("activeServiceCount")
-    val activeServiceCount: Int,
-    @SerializedName("allServiceCount")
-    val allServiceCount: Int,
-    @SerializedName("inactiveServiceCount")
-    val inactiveServiceCount: Int,
+data class ClientResponse(
+    @SerializedName("clientCount")
+    val clientCount: Int,
+    @SerializedName("clientData")
+    val clientData: ClientData,
     @SerializedName("message")
     val message: String,
-    @SerializedName("serviceCategoryData")
-    val serviceCategoryData: List<ServiceCategoryData>,
-    @SerializedName("serviceData")
-    val serviceData: ServiceData,
     @SerializedName("status_code")
     val statusCode: Int
 ) {
-    data class ServiceCategoryData(
-        @SerializedName("category_name")
-        val categoryName: String,
-        @SerializedName("created_at")
-        val createdAt: String,
-        @SerializedName("id")
-        val id: Int,
-        @SerializedName("status")
-        val status: Int,
-        @SerializedName("updated_at")
-        val updatedAt: String
-    )
-
-    data class ServiceData(
+    data class ClientData(
         @SerializedName("current_page")
         val currentPage: Int,
         @SerializedName("data")
@@ -61,18 +42,20 @@ data class ServiceResponse(
         val total: Int
     ) {
         data class Data(
-            @SerializedName("category_id")
-            val categoryId: Int,
+            @SerializedName("client_address")
+            val clientAddress: String,
+            @SerializedName("client_email")
+            val clientEmail: String,
+            @SerializedName("client_image")
+            val clientImage: Any,
+            @SerializedName("client_mobile")
+            val clientMobile: String,
+            @SerializedName("client_name")
+            val clientName: String,
             @SerializedName("created_at")
             val createdAt: String,
             @SerializedName("id")
             val id: Int,
-            @SerializedName("service_image")
-            val serviceImage: Any,
-            @SerializedName("service_name")
-            val serviceName: String,
-            @SerializedName("service_price")
-            val servicePrice: Int,
             @SerializedName("status")
             val status: Int,
             @SerializedName("updated_at")

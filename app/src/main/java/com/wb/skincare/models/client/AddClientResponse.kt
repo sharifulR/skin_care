@@ -1,9 +1,9 @@
-package com.wb.skincare.models
+package com.wb.skincare.models.client
 
 
 import com.google.gson.annotations.SerializedName
 
-data class updateClientResponse(
+data class AddClientResponse(
     @SerializedName("clientData")
     val clientData: ClientData,
     @SerializedName("message")
@@ -16,19 +16,9 @@ data class updateClientResponse(
         val clientAddress: String,
         @SerializedName("client_email")
         val clientEmail: String,
-        @SerializedName("client_image")
-        val clientImage: Any,
         @SerializedName("client_mobile")
         val clientMobile: String,
         @SerializedName("client_name")
-        val clientName: String,
-        @SerializedName("created_at")
-        val createdAt: String,
-        @SerializedName("id")
-        val id: Int,
-        @SerializedName("status")
-        val status: Int,
-        @SerializedName("updated_at")
-        val updatedAt: String
+        val clientName: String
     )
 }

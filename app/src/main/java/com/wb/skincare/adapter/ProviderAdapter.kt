@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wb.skincare.R
 import com.wb.skincare.databinding.ProviderListItemBinding
-import com.wb.skincare.models.ProviderResponse
+import com.wb.skincare.models.provider.ProviderResponse
 import kotlin.reflect.KFunction1
 
 class ProviderAdapter(private val onProviderItemClicked: KFunction1<ProviderResponse.ProviderData.Data, Unit>) : ListAdapter<ProviderResponse.ProviderData.Data, ProviderAdapter.ProvidersViewHolder>(ComparatorDiffUtil()) {

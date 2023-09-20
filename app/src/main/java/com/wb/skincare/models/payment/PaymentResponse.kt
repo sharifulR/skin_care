@@ -1,19 +1,23 @@
-package com.wb.skincare.models
+package com.wb.skincare.models.payment
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ClientResponse(
-    @SerializedName("clientCount")
-    val clientCount: Int,
-    @SerializedName("clientData")
-    val clientData: ClientData,
+data class PaymentResponse(
+    @SerializedName("activePaymentTypeCount")
+    val activePaymentTypeCount: Int,
+    @SerializedName("allPaymentTypeCount")
+    val allPaymentTypeCount: Int,
+    @SerializedName("inactivePaymentTypeCount")
+    val inactivePaymentTypeCount: Int,
     @SerializedName("message")
     val message: String,
+    @SerializedName("paymentTypeData")
+    val paymentTypeData: PaymentTypeData,
     @SerializedName("status_code")
     val statusCode: Int
 ) {
-    data class ClientData(
+    data class PaymentTypeData(
         @SerializedName("current_page")
         val currentPage: Int,
         @SerializedName("data")
@@ -42,20 +46,14 @@ data class ClientResponse(
         val total: Int
     ) {
         data class Data(
-            @SerializedName("client_address")
-            val clientAddress: String,
-            @SerializedName("client_email")
-            val clientEmail: String,
-            @SerializedName("client_image")
-            val clientImage: Any,
-            @SerializedName("client_mobile")
-            val clientMobile: String,
-            @SerializedName("client_name")
-            val clientName: String,
             @SerializedName("created_at")
             val createdAt: String,
             @SerializedName("id")
             val id: Int,
+            @SerializedName("is_default")
+            val isDefault: Int,
+            @SerializedName("payment_type_name")
+            val paymentTypeName: String,
             @SerializedName("status")
             val status: Int,
             @SerializedName("updated_at")

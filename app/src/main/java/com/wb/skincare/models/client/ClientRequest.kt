@@ -1,4 +1,4 @@
-package com.wb.skincare.models
+package com.wb.skincare.models.client
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,23 +1,18 @@
 package com.wb.view
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.wb.skincare.ClientFragment
 import com.wb.skincare.R
 import com.wb.skincare.databinding.FragmentUpdateProviderBinding
-import com.wb.skincare.models.ClientRequest
-import com.wb.skincare.models.ProviderRequest
+import com.wb.skincare.models.provider.ProviderRequest
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.utils.ProgressDialog
 import com.wb.skincare.utils.TokenManager
-import com.wb.skincare.viewModels.ClientViewModel
 import com.wb.skincare.viewModels.ProviderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

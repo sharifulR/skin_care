@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.constraintlayout.widget.Constraints
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.wb.skincare.models.AddClientResponse
-import com.wb.skincare.models.ClientRequest
-import com.wb.skincare.models.ClientResponse
-import com.wb.skincare.models.updateClientResponse
+import com.wb.skincare.models.client.AddClientResponse
+import com.wb.skincare.models.client.ClientRequest
+import com.wb.skincare.models.client.ClientResponse
+import com.wb.skincare.models.client.updateClientResponse
 import com.wb.skincare.netwarks.ClientInterface
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.utils.Constants

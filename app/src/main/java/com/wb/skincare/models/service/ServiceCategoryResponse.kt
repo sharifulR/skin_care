@@ -1,23 +1,23 @@
-package com.wb.skincare.models
+package com.wb.skincare.models.service
 
 
 import com.google.gson.annotations.SerializedName
 
-data class ProviderResponse(
-    @SerializedName("activeProviderCount")
-    val activeProviderCount: Int,
-    @SerializedName("allProviderCount")
-    val allProviderCount: Int,
-    @SerializedName("inactiveProviderCount")
-    val inactiveProviderCount: Int,
+data class ServiceCategoryResponse(
+    @SerializedName("activeServiceCategoryCount")
+    val activeServiceCategoryCount: Int,
+    @SerializedName("allServiceCategoryCount")
+    val allServiceCategoryCount: Int,
+    @SerializedName("inactiveServiceCategoryCount")
+    val inactiveServiceCategoryCount: Int,
     @SerializedName("message")
     val message: String,
-    @SerializedName("providerData")
-    val providerData: ProviderData,
+    @SerializedName("serviceCategoryData")
+    val serviceCategoryData: ServiceCategoryData,
     @SerializedName("status_code")
     val statusCode: Int
 ) {
-    data class ProviderData(
+    data class ServiceCategoryData(
         @SerializedName("current_page")
         val currentPage: Int,
         @SerializedName("data")
@@ -46,22 +46,12 @@ data class ProviderResponse(
         val total: Int
     ) {
         data class Data(
+            @SerializedName("category_name")
+            val categoryName: String,
             @SerializedName("created_at")
             val createdAt: String,
             @SerializedName("id")
             val id: Int,
-            @SerializedName("is_default")
-            val isDefault: Int,
-            @SerializedName("provider_address")
-            val providerAddress: Any,
-            @SerializedName("provider_email")
-            val providerEmail: Any,
-            @SerializedName("provider_image")
-            val providerImage: Any,
-            @SerializedName("provider_mobile")
-            val providerMobile: Any,
-            @SerializedName("provider_name")
-            val providerName: String,
             @SerializedName("status")
             val status: Int,
             @SerializedName("updated_at")

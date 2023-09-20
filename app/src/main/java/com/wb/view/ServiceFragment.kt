@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.wb.skincare.R
 import com.wb.skincare.adapter.ServiceAdapter
 import com.wb.skincare.databinding.FragmentServiceBinding
-import com.wb.skincare.models.CategoryWiseService
-import com.wb.skincare.models.ServiceResponse
+import com.wb.skincare.models.service.CategoryWiseService
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.netwarks.ServiceInterface
 import com.wb.skincare.utils.TokenManager
@@ -56,7 +55,7 @@ class ServiceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindObservers()
-        serviceViewModel.getServices()
+        serviceViewModel.getCategoryWiseService(serviceCategoryId)
 
         binding.serviceListRecyclerView.layoutManager=
             StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
@@ -69,14 +68,19 @@ class ServiceFragment : Fragment() {
     }
 
     private fun bindObservers() {
-        serviceViewModel.serviceLiveData.observe(viewLifecycleOwner, Observer {
+        serviceViewModel.categoryWiseServiceLiveData.observe(viewLifecycleOwner, Observer {
             //binding.progressBar.isVisible=false
 
             when(it){
                 is NetworkResult.Success->{
                     Log.d("TAG", "bindObservers: ${it.data}")
                     val r = it.data
-                    serviceAdapter.submitList(it.data?.serviceData?.data)
+                    if (it.data!=null){
+                        serviceAdapter.submitList(it.data?.serviceData)
+
+                    }else {
+                        Toast.makeText(context, "data not found!", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(),it.message.toString(), Toast.LENGTH_SHORT).show()
@@ -88,7 +92,7 @@ class ServiceFragment : Fragment() {
         })
     }
 
-    private fun onServiceItemClicked(serviceResponse: ServiceResponse.ServiceData.Data){
+    private fun onServiceItemClicked(serviceResponse: CategoryWiseService.ServiceData){
         /*val bundle=Bundle()
         bundle.putString("client",Gson().toJson(clientResponse))*/
 
@@ -102,8 +106,8 @@ class ServiceFragment : Fragment() {
     }
     private fun replaceFragment(fragment: Fragment){
         val fragmentTransaction=fragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.fragmentContainerView,fragment)
-        fragmentTransaction?.commit()
+        fragmentTransaction?.replace(R.id.fragmentContainerView,fragment,null)
+        fragmentTransaction?.addToBackStack(null)?.commit()
     }
 
     override fun onDestroy() {

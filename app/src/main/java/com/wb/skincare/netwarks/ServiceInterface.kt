@@ -1,8 +1,8 @@
 package com.wb.skincare.netwarks
 
-import com.wb.skincare.models.CategoryWiseService
-import com.wb.skincare.models.ServiceCategoryResponse
-import com.wb.skincare.models.ServiceResponse
+import com.wb.skincare.models.service.CategoryWiseService
+import com.wb.skincare.models.service.ServiceCategoryResponse
+import com.wb.skincare.models.service.ServiceResponse
 import com.wb.skincare.utils.Constants
 import retrofit2.Response
 import retrofit2.http.*

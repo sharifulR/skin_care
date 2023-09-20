@@ -15,7 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.wb.skincare.adapter.ServiceCategoryAdapter
 import com.wb.skincare.databinding.FragmentCategoryServiceBinding
-import com.wb.skincare.models.ServiceCategoryResponse
+import com.wb.skincare.models.service.ServiceCategoryResponse
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.netwarks.ServiceInterface
 import com.wb.skincare.utils.TokenManager
@@ -102,7 +102,7 @@ class ServiceCategoryFragment : Fragment() {
         })
     }
 
-    private fun onServiceItemClicked(serviceResponse:ServiceCategoryResponse.ServiceCategoryData.Data){
+    private fun onServiceItemClicked(serviceResponse: ServiceCategoryResponse.ServiceCategoryData.Data){
 
         val serviceId=serviceResponse.id
         val serviceName = serviceResponse.categoryName
@@ -112,8 +112,8 @@ class ServiceCategoryFragment : Fragment() {
     }
     private fun replaceFragment(fragment: Fragment){
         val fragmentTransaction=fragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.fragmentContainerView,fragment)
-        fragmentTransaction?.commit()
+        fragmentTransaction?.replace(R.id.fragmentContainerView,fragment,null)
+        fragmentTransaction?.addToBackStack(null)?.commit()
     }
 
     override fun onDestroy() {

@@ -17,7 +17,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.wb.skincare.ClientFragment
 import com.wb.skincare.R
 import com.wb.skincare.databinding.FragmentAddClientBinding
-import com.wb.skincare.models.ClientRequest
+import com.wb.skincare.models.client.ClientRequest
 import com.wb.skincare.netwarks.NetworkResult
 import com.wb.skincare.utils.ProgressDialog
 import com.wb.skincare.viewModels.ClientViewModel

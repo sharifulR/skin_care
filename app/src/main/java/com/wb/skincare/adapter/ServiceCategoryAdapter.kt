@@ -1,13 +1,15 @@
 package com.wb.skincare.adapter
 
+import android.opengl.Visibility
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wb.skincare.databinding.CategoryItemListBinding
-import com.wb.skincare.models.ServiceCategoryResponse
+import com.wb.skincare.models.service.ServiceCategoryResponse
 import kotlin.reflect.KFunction1
 
 class ServiceCategoryAdapter (private val onServiceItemClicked: KFunction1<ServiceCategoryResponse.ServiceCategoryData.Data, Unit>) : ListAdapter<ServiceCategoryResponse.ServiceCategoryData.Data, ServiceCategoryAdapter.ServicesCategoryViewHolder>(ComparatorDiffUtil()) {
@@ -29,7 +31,7 @@ class ServiceCategoryAdapter (private val onServiceItemClicked: KFunction1<Servi
         fun bind(service: ServiceCategoryResponse.ServiceCategoryData.Data){
             binding.serviceName.text=service.categoryName
             Log.d("TAG", "bind: ${service.categoryName}")
-            //binding.servicePrice.text= service.servicePrice.toString()
+
 
             binding.root.setOnClickListener {
                 onServiceItemClicked(service)

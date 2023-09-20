@@ -16,9 +16,9 @@ class ServiceViewModel @Inject constructor(private val serviceRepository:Service
             serviceRepository.getServicesCategory()
         }
     }
-    fun getCategoryWiseService() {
+    fun getCategoryWiseService(serviceCategoryId: Int) {
         viewModelScope.launch {
-            serviceRepository.getCategoryWiseService()
+            serviceRepository.getCategoryWiseService(serviceCategoryId)
         }
     }
     fun getServices(){

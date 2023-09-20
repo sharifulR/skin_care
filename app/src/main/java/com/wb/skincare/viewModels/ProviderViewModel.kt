@@ -2,12 +2,10 @@ package com.wb.skincare.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wb.skincare.models.ClientRequest
-import com.wb.skincare.models.ProviderRequest
+import com.wb.skincare.models.provider.ProviderRequest
 import com.wb.skincare.repositorys.ProviderRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.security.Provider
 import javax.inject.Inject
 
 @HiltViewModel

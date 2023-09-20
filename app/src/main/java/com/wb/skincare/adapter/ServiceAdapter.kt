@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wb.skincare.databinding.CategoryItemListBinding
-import com.wb.skincare.models.CategoryWiseService
-import com.wb.skincare.models.ServiceResponse
+import com.wb.skincare.databinding.ServiceListItemBinding
+import com.wb.skincare.models.service.CategoryWiseService
+import java.security.Provider.Service
 import kotlin.reflect.KFunction1
 
-class ServiceAdapter(private val onServiceItemClicked: KFunction1<ServiceResponse.ServiceData.Data, Unit>) : ListAdapter<ServiceResponse.ServiceData.Data, ServiceAdapter.ServicesViewHolder>(ComparatorDiffUtil()) {
+class ServiceAdapter(private val onServiceItemClicked: KFunction1<CategoryWiseService.ServiceData, Unit>) : ListAdapter<CategoryWiseService.ServiceData, ServiceAdapter.ServicesViewHolder>(ComparatorDiffUtil()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesViewHolder {
-        val binding= CategoryItemListBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding= ServiceListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ServicesViewHolder(binding)
     }
 
@@ -25,12 +26,12 @@ class ServiceAdapter(private val onServiceItemClicked: KFunction1<ServiceRespons
             holder.bind(it)
         }
     }
-    inner class ServicesViewHolder(private val binding: CategoryItemListBinding) :
+    inner class ServicesViewHolder(private val binding: ServiceListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(service: ServiceResponse.ServiceData.Data){
+        fun bind(service: CategoryWiseService.ServiceData){
             binding.serviceName.text=service.serviceName
             Log.d("TAG", "bind: ${service.serviceName}")
-            binding.servicePrice.text= service.servicePrice.toString()
+            binding.servicePrice.text= service.servicePrice.toString()+"/-"
 
             binding.root.setOnClickListener {
                 onServiceItemClicked(service)
@@ -57,12 +58,12 @@ class ServiceAdapter(private val onServiceItemClicked: KFunction1<ServiceRespons
 
     }
 
-    class ComparatorDiffUtil : DiffUtil.ItemCallback<ServiceResponse.ServiceData.Data>() {
-        override fun areItemsTheSame(oldItem: ServiceResponse.ServiceData.Data, newItem: ServiceResponse.ServiceData.Data): Boolean {
+    class ComparatorDiffUtil : DiffUtil.ItemCallback<CategoryWiseService.ServiceData>() {
+        override fun areItemsTheSame(oldItem: CategoryWiseService.ServiceData, newItem: CategoryWiseService.ServiceData): Boolean {
             return oldItem.id==newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: ServiceResponse.ServiceData.Data, newItem: ServiceResponse.ServiceData.Data): Boolean {
+        override fun areContentsTheSame(oldItem: CategoryWiseService.ServiceData, newItem: CategoryWiseService.ServiceData): Boolean {
             return oldItem==newItem
         }
 
